@@ -18,9 +18,10 @@ Restart Textual and the plugin is loaded. To verify, open the preferences panel 
 
 There are no commands associated with this plugin. All configuration is done through its preference pane.
 
-### Known Bugs
+### Known Issues
 
 - Textual may crash on application quit
 - Using the default colors in the server list causes painting oddities
+- "Default" values do not always take inverted colors setting into account.
 
 Report any other issues on GitHub, on IRC (freenode: Clinteger), or by email (clinteger@gmail.com).
