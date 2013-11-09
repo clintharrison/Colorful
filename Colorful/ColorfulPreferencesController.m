@@ -64,6 +64,10 @@
                                 @"name": @"Member nickname shadow"}];
     [_tableContents addObject:@{@"key": @"HexUISelectedCellShadowColor",
                                 @"name": @"Member nickname shadow (selected)"}];
+    
+    [_tableContents addObject:@{@"key": @"HexUISplitterColor",
+                                @"name": @"Server and member list splitter"}];
+    
     [_tableView reloadData];
 }
 

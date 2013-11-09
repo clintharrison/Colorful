@@ -2,6 +2,7 @@
 #import "ColorfulPreferencesController.h"
 #import "TVCServerList+Colorful.h"
 #import "TVCMemberList+Colorful.h"
+#import "TVCThinSplitView+Colorful.h"
 
 @interface TPI_Colorful : NSObject <THOPluginProtocol>
 
