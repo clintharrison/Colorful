@@ -8,7 +8,7 @@
 
 ### Installation
 
-Build the extension in Xcode (it was written in version 5—no guarantees are made of backwards compatibility). Upon successful compilation, it should be placed in:
+Build the extension in Xcode (it was written in version 5—good luck with other versions). Upon successful compilation, it should be placed in:
 
 `~/Library/Containers/com.codeux.irc.textual/Data/Library/Application Support/Textual IRC/Extensions`
 
@@ -21,6 +21,6 @@ There are no commands associated with this plugin. All configuration is done thr
 ### Known Bugs
 
 - Textual may crash on application quit
-- Using the default colors in the server list cause painting oddities
+- Using the default colors in the server list causes painting oddities
 
 Report any other issues on GitHub, on IRC (freenode: Clinteger), or by email (clinteger@gmail.com).
