@@ -25,6 +25,7 @@ void swapMethods(Class class, SEL original, SEL replacement)
     [self initializePreferences];
     [TPI_Colorful swapServerListMethods];
     [TPI_Colorful swapMemberListMethods];
+    [TPI_Colorful forceControlsToRedraw];
 }
 
 - (void)pluginUnloadedFromMemory
@@ -34,6 +35,7 @@ void swapMethods(Class class, SEL original, SEL replacement)
     if ([RZUserDefaults() boolForKey:@"HexUIEnabled"]) {
         [TPI_Colorful swapServerListMethods];
         [TPI_Colorful swapMemberListMethods];
+        [TPI_Colorful forceControlsToRedraw];
     }
 }
 
@@ -67,9 +69,11 @@ void swapMethods(Class class, SEL original, SEL replacement)
     NSDictionary *d = @{
        @"HexUIEnabled": @YES,
 //
+
        @"HexUIActiveWindowListBackgroundColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(activeWindowListBackgroundColor)]],
        @"HexUIInactiveWindowListBackgroundColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(inactiveWindowListBackgroundColor)]],
 //
+
        @"HexUIBadgeBackgroundColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(messageCountBadgeAquaBackgroundColor)]],
        @"HexUIBadgeHighlightBackgroundColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(messageCountBadgeHighlightBackgroundColor)]],
        @"HexUIBadgeNormalTextColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(messageCountBadgeNormalTextColor)]],
@@ -77,6 +81,7 @@ void swapMethods(Class class, SEL original, SEL replacement)
        @"HexUIBadgeSelectedTextColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(messageCountBadgeSelectedTextColor)]],
        @"HexUIBadgeTextShadowColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(messageCountBadgeShadowColor)]],
 //
+
        @"HexUIServerCellDisabledTextColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(serverCellDisabledTextColor)]],
        @"HexUIServerCellNormalTextColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(serverCellNormalTextColor)]],
        @"HexUIServerNormalShadowColor": [NSArchiver archivedDataWithRootObject:[sl performSelector:@selector(serverCellNormalTextShadowColorForActiveWindow)]],
@@ -114,8 +119,10 @@ void swapMethods(Class class, SEL original, SEL replacement)
 + (void)swapServerListMethods
 {
     Class class = [self.masterController.serverList class];
+    Class class = [TVCServerList class];
 
     swapMethods(class, NSSelectorFromString(@"updateBackgroundColor"), NSSelectorFromString(@"HexUIUpdateBackgroundColor"));
+    swapMethods(class, @selector(updateBackgroundColor), @selector(HexUIUpdateBackgroundColor));
 
     swapMethods(class, @selector(activeWindowListBackgroundColor), @selector(HexUIActiveWindowListBackgroundColor));
     swapMethods(class, @selector(inactiveWindowListBackgroundColor), @selector(HexUIInactiveWindowListBackgroundColor));
@@ -128,6 +135,7 @@ void swapMethods(Class class, SEL original, SEL replacement)
     swapMethods(class, @selector(messageCountBadgeSelectedTextColor), @selector(HexUIMessageCountBadgeSelectedTextColor));
     swapMethods(class, @selector(messageCountBadgeShadowColor), @selector(HexUIMessageCountBadgeShadowColor));
 //
+
     swapMethods(class, @selector(serverCellDisabledTextColor), @selector(HexUIServerCellDisabledTextColor));
     swapMethods(class, @selector(serverCellNormalTextColor), @selector(HexUIServerCellNormalTextColor));
     swapMethods(class, @selector(serverCellNormalTextShadowColorForActiveWindow), @selector(HexUIServerCellNormalTextShadowColorForActiveWindow));
@@ -146,18 +154,16 @@ void swapMethods(Class class, SEL original, SEL replacement)
     swapMethods(class, @selector(channelCellSelectedTextShadowColorForInactiveWindow), @selector(HexUIChannelCellSelectedTextShadowColorForInactiveWindow));
     
     swapMethods(class, @selector(graphiteTextSelectionShadowColor), @selector(HexUIGraphiteTextSelectionShadowColor));
-    
-    [TPI_Colorful forceControlsToRedraw];
 }
 
 + (void)swapMemberListMethods
 {
-    Class class = [self.masterController.memberList class];
+    Class class = [TVCMemberList class];
     
-    swapMethods(class, NSSelectorFromString(@"updateBackgroundColor"), NSSelectorFromString(@"HexUIUpdateBackgroundColor"));
+    swapMethods(class, @selector(updateBackgroundColor), @selector(HexUIUpdateBackgroundColor));
     
-    swapMethods(class, NSSelectorFromString(@"activeWindowListBackgroundColor"), @selector(HexUIActiveMemberListBackgroundColor));
-    swapMethods(class, NSSelectorFromString(@"inactiveWindowListBackgroundColor"), @selector(HexUIInactiveMemberListBackgroundColor));
+    swapMethods(class, @selector(activeWindowListBackgroundColor), @selector(HexUIActiveMemberListBackgroundColor));
+    swapMethods(class, @selector(inactiveWindowListBackgroundColor), @selector(HexUIInactiveMemberListBackgroundColor));
     swapMethods(class, @selector(normalCellTextColor), @selector(HexUINormalCellTextColor));
     swapMethods(class, @selector(awayUserCellTextColor), @selector(HexUIAwayUserCellTextColor));
     swapMethods(class, @selector(selectedCellTextColor), @selector(HexUISelectedCellTextColor));
@@ -165,8 +171,6 @@ void swapMethods(Class class, SEL original, SEL replacement)
     swapMethods(class, @selector(normalSelectedCellTextShadowColorForActiveWindow), @selector(HexUINormalSelectedCellTextShadowColorForActiveWindow));
     swapMethods(class, @selector(normalSelectedCellTextShadowColorForInactiveWindow), @selector(HexUINormalSelectedCellTextShadowColorForInactiveWindow));
     swapMethods(class, @selector(graphiteSelectedCellTextShadowColorForActiveWindow), @selector(HexUIGraphiteSelectedCellTextShadowColorForActiveWindow));
-    
-    [TPI_Colorful forceControlsToRedraw];
 
 }
 
