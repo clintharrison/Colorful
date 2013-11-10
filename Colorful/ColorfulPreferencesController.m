@@ -143,7 +143,8 @@
     [RZUserDefaults() removeObjectForKey:@"HexUISelectedCellTextColor"];
     [RZUserDefaults() removeObjectForKey:@"HexUINormalCellTextShadowColor"];
     [RZUserDefaults() removeObjectForKey:@"HexUISelectedCellShadowColor"];
-
+    
+    [RZUserDefaults() removeObjectForKey:@"HexUISplitterColor"];
     
     [TPI_Colorful forceControlsToRedraw];
 
