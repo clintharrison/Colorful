@@ -2,6 +2,8 @@
 
 *Colorful* is a plugin for the premiere IRC application on OS X: [Textual](http://codeux.com/textual), allowing users to customize UI colors that are normally hardcoded. For now, this means the colors associated with the server and member lists, as was possible in LimeChat and old versions of Textual.
 
+Please read this document in its entirety, as well as the `LICENSE` in the project's root directory, paying particular attention to the disclaimer that I take no responsibility for the consequences of using this plugin. That said, if you have any questions I'm open to a chat :)
+
 ### Screenshot
 
 ![Colorful: a Textual plugin](http://i.imgur.com/NEB1ce8.png)
